@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+.pokedexContainer {
+  background-color: rgb(136, 42, 42);
+  padding: 10px 20px;
+  border-radius: 15px;
+  width: 400px;
+  height: 600px;
+}
+
+.screenContainer {
+  background-color: rgb(199, 199, 199);
+  border-radius: 15px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 85%, 0% 100%);
+  margin-bottom: 20px;
+  height: 350px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, auto);
+}
+.screen {
+  position: relative;
+  height: 280px;
+  background-color: rgb(44, 44, 44);
+  grid-row-start: 3;
+  grid-column-start: 2;
+  grid-column-end: 10;
+}
+.screen-pokemonImageContainer {
+  height: auto;
+  width: 20%;
+}
+.pokemonImage {
+  height: 100%;
+  width: 100%;
+}
+
+.screen-button {
+  background-color: red;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  grid-row-start: 4;
+  grid-column-start: 3;
+}
+
+.topDots-container {
+  display: flex;
+  justify-content: center;
+  grid-row-start: 1;
+  grid-column-start: span 11;
+}
+.topDots {
+  background-color: red;
+  height: 10px;
+  width: 10px;
+  border-radius: 15px;
+  margin-right: 5px
+}
