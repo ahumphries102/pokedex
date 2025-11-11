@@ -2,7 +2,7 @@ import { useState } from "react"
 import "./pokedex.css"
 export default function ToDo() {
   const [pokeName, setPokeName] = useState("")
-  const [pokemon, setPokemon] = useState([])
+  const [pokemon, setPokemon] = useState(null)
   const handleInput = (e) => {
     setPokeName(e.target.value)
   }
@@ -14,16 +14,38 @@ export default function ToDo() {
   }
   return (
     <>
-      <div>
-        <h1>Pokedex</h1>
-        <h5>Which pokemon are you looking for?</h5>
-        <h6>{pokemon.name}</h6>
-        <img
-          src={pokemon?.sprites?.other["official-artwork"].front_default}
-          alt="{pokemon.name}"
-        />
+      <div className="pokedexContainer">
+        <div className="largeTopButton" />
+        <div className="dotContainer">
+          <div className="redTopDot" />
+          <div className="yellowTopDot" />
+          <div className="blueTopDot" />
+        </div>
+        <div className="screenContainer">
+          <div className="topDots-container">
+            <div className="topDots" />
+            <div className="topDots" />
+          </div>
+          <div className="screen">
+            {pokemon?.name}
+            <div className="screen-pokemonImageContainer">
+              <img
+                className="pokemonImage"
+                style={{ display: pokemon ? "block" : "none" }}
+                src={pokemon?.sprites?.other["official-artwork"].front_default}
+                alt={pokemon?.name}
+              />
+            </div>
+          </div>
+          <div className="screen-button"></div>
+          <div className="bottomDots-container">
+            <div className="bottomDots" />
+            <div className="bottomDots" />
+            <div className="bottomDots" />
+          </div>
+        </div>
         <form
-          style={{ display: "flex", flexDirection: "column" }}
+          className="search"
           onSubmit={(e) => {
             e.preventDefault()
             locatePokemon(pokeName)
@@ -38,6 +60,7 @@ export default function ToDo() {
           />
           <button type="submit">Search</button>
         </form>
+        <div className="d-pad"></div>
       </div>
     </>
   )
