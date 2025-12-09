@@ -20,9 +20,8 @@ export default function ToDo() {
       }
       const data = await response.json()
       setPokemon(data)
-      setPokeName("")
       setPokeStats({
-        abilities: data.abilities.map(e => capitializeWord(e.ability.name)),
+        abilities: data.abilities.map((e) => capitializeWord(e.ability.name)),
         height: data.height,
         type: data.types[0].type.name,
         weight: data.weight,
@@ -35,11 +34,14 @@ export default function ToDo() {
       setError(error)
     } finally {
       setLoading(false)
+
+      setPokeName("")
     }
   }
   const capitializeWord = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1)
   }
+
   useEffect(() => {
     locatePokemon("pikachu")
     console.log("pokeStats updated:", pokeStats)
@@ -63,55 +65,48 @@ export default function ToDo() {
             <div className="topDots" />
             <div className="topDots" />
           </div>
-          <div
-            className="screen"
-            style={{ textAlign: "left", listStyle: "none", padding: 0 }}
-          >
-            <div>
-              {pokemon?.name}
-              </div>
-              <div>
-              Ability
-              </div>
-            <div className="screen-pokemonImageContainer">
-              <img
-                className="pokemonImage"
-                style={{ display: pokemon ? "block" : "none" }}
-                src={pokemon?.sprites?.other["official-artwork"].front_default}
-                alt={pokemon?.name}
-              />
-              <ul style={{ textAlign: "left", listStyle: "none", padding: 0 }}>
-                <li>Height: {pokeStats.stats && pokeStats.height}ft</li>
-                <li>Weight: {pokeStats.stats && pokeStats.weight}lbs</li>
-              </ul>
+          <div className="screen">
+            <div
+              className="innerScreen"
+              style={{ display: pokemon?.name ? "grid" : "none" }}
+            >
+              <h1>{pokemon?.name && capitializeWord(pokemon?.name)}</h1>
+              <span className="pokemon">
+                <img
+                  className="pokemonImage"
+                  style={{ display: pokemon ? "block" : "none" }}
+                  src={
+                    pokemon?.sprites?.other["official-artwork"].front_default
+                  }
+                  alt={pokemon?.name}
+                />
+                <span>Height: {pokeStats.height && pokeStats.height}</span>
+                <span>Weight: {pokeStats.weight && pokeStats.weight}</span>
+              </span>
+              <span className="stats">
+                <span>Stats</span>
+                <ul className="statsAndAbilities">
+                  {pokeStats.stats &&
+                    pokeStats.stats.map((stat, index) => (
+                      <li key={index}>
+                        {stat.name}: {stat.value}
+                      </li>
+                    ))}
+                </ul>
+                <span>Abilities</span>
+
+                <ul className="statsAndAbilities">
+                  {pokeStats.abilities &&
+                    pokeStats.abilities.map((ability, index) => (
+                      <li key={index}>{ability}</li>
+                    ))}
+                </ul>
+              </span>
             </div>
-            {loading && <p>Loading...</p>}
-            {error && <p style={{ color: "red" }}>{error.message}</p>}
-            <div>
-              <ul style={{ textAlign: "left", listStyle: "none", padding: 0 }}>
-                {pokeStats.abilities &&
-                  pokeStats.abilities.map((ability, index) => (
-                    <li key={index}>{ability}</li>
-                  ))}
-              </ul>
-              <ul>
-                {pokeStats.forms &&
-                  pokeStats.forms.map((forms, index) => (
-                    <li key={index}>{forms.name}</li>
-                  ))}
-              </ul>
-            </div>
-            <div>
-              <p>Stats</p>
-              <ul style={{ textAlign: "left", listStyle: "none", padding: 0 }}>
-                {pokeStats.stats &&
-                  pokeStats.stats.map((stat, index) => (
-                    <li key={index}>
-                      {stat.name}: {stat.value}
-                    </li>
-                  ))}
-              </ul>
-            </div>
+            <span className="loadingAndErrorDisplay">
+              {loading && <span>Loading...</span>}
+              {error && <span style={{ color: "red" }}>{error.message}</span>}
+            </span>
           </div>
           <div className="screen-button"></div>
           <div className="bottomDots-container">
