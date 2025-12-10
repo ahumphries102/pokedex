@@ -14,7 +14,7 @@ app.get('/:id', async (req, res) => {
     const pokemon = await pokedex.getPokemonByName(pokemonName)
     res.send(pokemon);
   } catch (error) {
-    res.status(404).send({ error: "Pokemon not found" });
+    res.status(404).send({ error: "Could not locate that pokemon. Please try again" });
     res.send(error)
     return;
   }
