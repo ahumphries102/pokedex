@@ -1,0 +1,39 @@
+:root {
+  --dot-width: 25px;
+  --dot-height: 25px;
+  --dot-margin: 0 5px 0 0;
+  --dot-border: thin solid black;
+  --bottom-container-starting-row: 3;
+}
+.topDots {
+  width: var(--dot-width);
+  height: var(--dot-height);
+  margin: var(--dot-margin);
+  border: var(--dot-border);
+  border-radius: 50%;
+  grid-row-start: 1;
+  grid-column-start: 2;
+}
+.topDots-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  grid-row-start: 1;
+  grid-column: 2;
+}
+.topDots {
+  background-color: red;
+  height: 10px;
+  width: 10px;
+  border-radius: 15px;
+  margin-right: 5px;
+  grid-row-start: 1;
+}
+.bottomDots {
+  background-color: rgb(44, 44, 44);
+  border: thin solid black;
+  height: 5px;
+  width: 100px;
+  border-radius: 15px;
+  margin-top: 15px;
+}

@@ -1,9 +1,8 @@
-import './App.css'
-import PokeStats from './pokeStats'
+import PokeDex from './components/pokeDex'
 function App() {
   return (
     <>
-      <PokeStats />
+      <PokeDex />
     </>
   )
 }
